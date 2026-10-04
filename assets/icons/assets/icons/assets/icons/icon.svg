@@ -1,0 +1,200 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Super Analyzer</title>
+  <desc id="desc">
+    Super Analyzer AI market intelligence application icon.
+  </desc>
+
+  <defs>
+    <linearGradient
+      id="background"
+      x1="0"
+      y1="0"
+      x2="1"
+      y2="1"
+    >
+      <stop offset="0%" stop-color="#0b1422"/>
+      <stop offset="100%" stop-color="#07101b"/>
+    </linearGradient>
+
+    <linearGradient
+      id="signal"
+      x1="0"
+      y1="1"
+      x2="1"
+      y2="0"
+    >
+      <stop offset="0%" stop-color="#2f80ed"/>
+      <stop offset="100%" stop-color="#56ccf2"/>
+    </linearGradient>
+
+    <linearGradient
+      id="glow"
+      x1="0"
+      y1="0"
+      x2="1"
+      y2="1"
+    >
+      <stop offset="0%" stop-color="#4da3ff"/>
+      <stop offset="100%" stop-color="#27d17f"/>
+    </linearGradient>
+
+    <filter
+      id="shadow"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feDropShadow
+        dx="0"
+        dy="12"
+        stdDeviation="14"
+        flood-opacity="0.35"
+      />
+    </filter>
+  </defs>
+
+  <!-- App background -->
+  <rect
+    x="16"
+    y="16"
+    width="480"
+    height="480"
+    rx="112"
+    fill="url(#background)"
+    stroke="#1d2a3b"
+    stroke-width="10"
+  />
+
+  <!-- Outer intelligence ring -->
+  <circle
+    cx="256"
+    cy="256"
+    r="174"
+    fill="none"
+    stroke="#1d2a3b"
+    stroke-width="12"
+  />
+
+  <circle
+    cx="256"
+    cy="256"
+    r="174"
+    fill="none"
+    stroke="url(#signal)"
+    stroke-width="12"
+    stroke-linecap="round"
+    stroke-dasharray="310 785"
+    transform="rotate(-42 256 256)"
+  />
+
+  <!-- Market chart -->
+  <path
+    d="M105 335
+       L145 295
+       L184 318
+       L225 245
+       L265 270
+       L307 188
+       L350 220
+       L407 132"
+    fill="none"
+    stroke="url(#signal)"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#shadow)"
+  />
+
+  <!-- Chart nodes -->
+  <circle
+    cx="105"
+    cy="335"
+    r="10"
+    fill="#56ccf2"
+  />
+
+  <circle
+    cx="225"
+    cy="245"
+    r="10"
+    fill="#56ccf2"
+  />
+
+  <circle
+    cx="307"
+    cy="188"
+    r="10"
+    fill="#27d17f"
+  />
+
+  <circle
+    cx="407"
+    cy="132"
+    r="13"
+    fill="#27d17f"
+  />
+
+  <!-- AI central core -->
+  <circle
+    cx="256"
+    cy="350"
+    r="48"
+    fill="#101824"
+    stroke="url(#glow)"
+    stroke-width="8"
+  />
+
+  <!-- AI neural mark -->
+  <path
+    d="M236 350
+       C236 338 244 329 256 329
+       C268 329 276 338 276 350
+       C276 362 268 371 256 371
+       C244 371 236 362 236 350Z"
+    fill="none"
+    stroke="#f4f7fb"
+    stroke-width="7"
+  />
+
+  <circle
+    cx="256"
+    cy="350"
+    r="7"
+    fill="#27d17f"
+  />
+
+  <!-- Small intelligence signals -->
+  <circle
+    cx="151"
+    cy="190"
+    r="7"
+    fill="#4da3ff"
+  />
+
+  <circle
+    cx="374"
+    cy="306"
+    r="7"
+    fill="#27d17f"
+  />
+
+  <path
+    d="M151 190 L188 220"
+    stroke="#1d2a3b"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M374 306 L337 330"
+    stroke="#1d2a3b"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+</svg>
