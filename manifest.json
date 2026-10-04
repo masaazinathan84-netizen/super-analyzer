@@ -1,0 +1,31 @@
+{
+  "name": "Super Analyzer",
+  "short_name": "Super Analyzer",
+  "description": "AI-powered multi-asset market intelligence and trading analysis platform.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070b12",
+  "theme_color": "#070b12",
+  "orientation": "landscape-primary",
+  "scope": "./",
+  "lang": "en",
+  "categories": [
+    "finance",
+    "business",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
