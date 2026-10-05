@@ -1,0 +1,11 @@
+{
+  "appId": "com.superanalyzer.ai",
+  "appName": "Super Analyzer",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
