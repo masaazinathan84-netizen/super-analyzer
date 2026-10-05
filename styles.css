@@ -1327,3 +1327,159 @@ footer span {
   }
 
   }
+.chart-analysis-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-upload-panel {
+  min-height: 420px;
+}
+
+.chart-upload-area {
+  min-height: 300px;
+  border: 1px dashed rgba(77, 163, 255, 0.45);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(77, 163, 255, 0.08),
+      transparent 65%
+    );
+  transition: 0.2s ease;
+}
+
+.chart-upload-area:hover,
+.chart-upload-area.dragging {
+  border-color: #4da3ff;
+  transform: translateY(-2px);
+}
+
+.upload-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  margin-bottom: 18px;
+  background: rgba(77, 163, 255, 0.12);
+  border: 1px solid rgba(77, 163, 255, 0.25);
+}
+
+.chart-upload-area h3 {
+  margin: 0 0 8px;
+}
+
+.chart-upload-area p {
+  max-width: 480px;
+  color: #8fa0b5;
+  line-height: 1.6;
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+.chart-upload-area small {
+  color: #7e8da0;
+}
+
+.chart-image-preview {
+  margin-top: 22px;
+}
+
+.chart-image-preview img {
+  width: 100%;
+  max-height: 650px;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #05080d;
+}
+
+.analysis-form {
+  display: grid;
+  gap: 16px;
+}
+
+.analysis-form label {
+  display: grid;
+  gap: 8px;
+  color: #aebdce;
+  font-size: 14px;
+}
+
+.analysis-form input,
+.analysis-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #080d15;
+  color: #ffffff;
+  outline: none;
+}
+
+.analysis-form input:focus,
+.analysis-form select:focus {
+  border-color: #4da3ff;
+}
+
+.analysis-form button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.chart-analysis-result {
+  margin-top: 20px;
+}
+
+.chart-analysis-result pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  color: #c8d4e3;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.analysis-disclaimer {
+  margin-top: 15px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: #8494a8;
+  background: rgba(255,255,255,0.03);
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .chart-analysis-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-upload-area {
+    min-height: 250px;
+    padding: 20px;
+  }
+
+  .chart-upload-panel {
+    min-height: auto;
+  }
+  }
