@@ -1,124 +1,122 @@
 "use strict";
 
-/*
-  SUPER ANALYZER
-  Main application interface.
 
-  The UI is ready for connection to:
-  - Real-time market data
-  - AI providers
-  - News providers
-  - Quantitative engines
-  - Risk engine
-  - Monitoring engine
-*/
+/* ================================
+   SUPER ANALYZER APP
+================================ */
 
-const screens =
-  document.querySelectorAll(".screen");
 
-const navigationButtons =
-  document.querySelectorAll(
-    "[data-screen]"
-  );
+const navButtons =
+  document.querySelectorAll(".nav-btn");
+
+
+const pages =
+  document.querySelectorAll(".page");
+
 
 const splash =
-  document.getElementById("splash");
+  document.getElementById("appSplash");
 
-const app =
-  document.getElementById("app");
 
-const runAnalysisButton =
-  document.getElementById("runAnalysis");
+const runButton =
+  document.getElementById("globalAnalyze");
 
-const consensusElement =
+
+const consensus =
   document.getElementById("consensus");
 
-const analysisTextElement =
+
+const bias =
+  document.getElementById("bias");
+
+
+const analysisText =
   document.getElementById("analysisText");
 
 
-/*
-  SPLASH SCREEN
-*/
+/* ================================
+   SPLASH SCREEN
+================================ */
 
 window.addEventListener(
   "load",
   () => {
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      if (splash) {
-        splash.classList.add("hidden");
-      }
+        if (splash) {
+          splash.classList.add("hidden");
+        }
 
-      if (app) {
-        app.classList.remove("hidden");
-      }
-
-    }, 1800);
+      },
+      1700
+    );
 
   }
 );
 
 
-/*
-  NAVIGATION
-*/
+/* ================================
+   NAVIGATION
+================================ */
 
-function showScreen(screenId) {
-
-  screens.forEach((screen) => {
-
-    screen.classList.remove("active");
-
-  });
-
-
-  const target =
-    document.getElementById(screenId);
-
-  if (target) {
-    target.classList.add("active");
-  }
-
-
-  navigationButtons.forEach((button) => {
-
-    const targetName =
-      button.dataset.screen;
-
-    if (
-      targetName === screenId
-    ) {
-      button.classList.add("active");
-    } else {
-      button.classList.remove("active");
-    }
-
-  });
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
-
-
-navigationButtons.forEach(
+navButtons.forEach(
   (button) => {
 
     button.addEventListener(
       "click",
       () => {
 
-        const screen =
-          button.dataset.screen;
+        const section =
+          button.dataset.section;
 
-        if (screen) {
-          showScreen(screen);
+
+        if (!section) {
+          return;
         }
+
+
+        navButtons.forEach(
+          (item) => {
+            item.classList.remove(
+              "active"
+            );
+          }
+        );
+
+
+        pages.forEach(
+          (page) => {
+            page.classList.remove(
+              "active"
+            );
+          }
+        );
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        const target =
+          document.getElementById(
+            section
+          );
+
+
+        if (target) {
+          target.classList.add(
+            "active"
+          );
+        }
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
       }
     );
@@ -127,76 +125,93 @@ navigationButtons.forEach(
 );
 
 
-/*
-  AI DEMO ANALYSIS
-*/
+/* ================================
+   AI DEMO ANALYSIS
+================================ */
 
-if (runAnalysisButton) {
+if (runButton) {
 
-  runAnalysisButton.addEventListener(
+  runButton.addEventListener(
     "click",
-    runDemoAnalysis
+    runAnalysis
   );
 
 }
 
 
-async function runDemoAnalysis() {
+async function runAnalysis() {
 
-  runAnalysisButton.disabled = true;
+  runButton.disabled = true;
 
-  runAnalysisButton.textContent =
-    "⟳ Analyzing...";
-
-
-  consensusElement.textContent =
-    "SCANNING";
+  runButton.textContent =
+    "Analyzing...";
 
 
-  analysisTextElement.textContent =
-    "Collecting market structure, momentum, liquidity, news and multi-timeframe evidence.";
+  if (consensus) {
+    consensus.textContent =
+      "Scanning";
+  }
 
 
-  await wait(700);
+  if (bias) {
+    bias.textContent =
+      "ANALYZING";
+  }
 
 
-  analysisTextElement.textContent =
-    "Running primary AI reasoning and independent second opinion.";
+  if (analysisText) {
+
+    analysisText.textContent =
+      "Scanning technical structure, liquidity, volatility, market context, news and multi-timeframe conditions...";
+
+  }
 
 
-  await wait(700);
+  await wait(900);
 
 
-  analysisTextElement.textContent =
-    "Quantitative engine is comparing momentum, volatility, trend and scenario conditions.";
+  if (analysisText) {
+
+    analysisText.textContent =
+      "AI reasoning layers are comparing evidence and preparing bull, base and bear scenarios.";
+
+  }
 
 
-  await wait(700);
+  await wait(900);
 
 
-  consensusElement.textContent =
-    "BULLISH";
+  if (consensus) {
+    consensus.textContent =
+      "Neutral";
+  }
 
 
-  consensusElement.style.color =
-    "var(--green)";
+  if (bias) {
+    bias.textContent =
+      "NEUTRAL";
+  }
 
 
-  analysisTextElement.textContent =
-    "Demo consensus: bullish conditions are developing, but confirmation and risk controls are required before any trade decision.";
+  if (analysisText) {
+
+    analysisText.textContent =
+      "Analysis complete. No live provider data is connected yet. Production mode will use real-time market data and connected AI providers.";
+
+  }
 
 
-  runAnalysisButton.disabled = false;
+  runButton.disabled = false;
 
-  runAnalysisButton.textContent =
-    "✦ Run AI Analysis";
+  runButton.textContent =
+    "Run AI Analysis";
 
 }
 
 
-/*
-  UTILITY
-*/
+/* ================================
+   UTILITY
+================================ */
 
 function wait(milliseconds) {
 
@@ -214,70 +229,25 @@ function wait(milliseconds) {
 }
 
 
-/*
-  MARKET DATA PLACEHOLDER
-*/
+/* ================================
+   APP INITIALIZATION
+================================ */
 
-const SuperAnalyzerApp = {
+function initializeSuperAnalyzer() {
 
-  version: "1.0.0",
+  console.log(
+    "Super Analyzer initialized."
+  );
 
-  status: "development",
+  console.log(
+    "Premium interface loaded."
+  );
 
-  markets: [
-    "BTC/USD",
-    "ETH/USD",
-    "SOL/USD",
-    "XAU/USD",
-    "EUR/USD",
-    "SPX"
-  ],
+  console.log(
+    "AI architecture ready."
+  );
 
-  tradingModes: [
-    "Scalping",
-    "Day Trading",
-    "Swing Trading",
-    "Position Trading",
-    "Long Term"
-  ],
-
-  analysisEngines: [
-    "Technical Analysis",
-    "Candlestick Analysis",
-    "Market Structure",
-    "Liquidity Analysis",
-    "Multi-Timeframe Analysis",
-    "Fundamental Analysis",
-    "News Analysis",
-    "Macro Analysis",
-    "Sentiment Analysis",
-    "AI Consensus",
-    "Risk Engine"
-  ]
-
-};
+}
 
 
-/*
-  GLOBAL ACCESS
-*/
-
-window.SuperAnalyzerApp =
-  SuperAnalyzerApp;
-
-
-/*
-  INITIALIZATION
-*/
-
-console.log(
-  "Super Analyzer initialized."
-);
-
-console.log(
-  "Application interface ready."
-);
-
-console.log(
-  "AI engines waiting for live providers."
-);
+initializeSuperAnalyzer();
