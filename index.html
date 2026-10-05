@@ -672,10 +672,171 @@
 
       <!-- ANALYST -->
 
-      <section
-        id="analyst"
-        class="page"
+      <section id="analyst" class="page">
+
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">AI VISION ANALYSIS</p>
+      <h2>Chart Intelligence</h2>
+      <p>
+        Upload a chart screenshot or chart photo and let
+        Super Analyzer examine the visible market structure.
+      </p>
+    </div>
+  </div>
+
+  <div class="chart-analysis-layout">
+
+    <article class="panel chart-upload-panel">
+
+      <div class="panel-header">
+        <div>
+          <h3>Upload Chart</h3>
+          <span>JPG · PNG · WebP · Maximum 10 MB</span>
+        </div>
+      </div>
+
+      <div
+        id="chartUploadArea"
+        class="chart-upload-area"
       >
+
+        <div class="upload-icon">
+          📷
+        </div>
+
+        <h3>Upload a chart screenshot</h3>
+
+        <p>
+          Drag and drop your chart here,
+          or select an image from your device.
+        </p>
+
+        <label
+          for="chartImageInput"
+          class="primary-btn upload-button"
+        >
+          Choose Chart Image
+        </label>
+
+        <input
+          id="chartImageInput"
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          hidden
+        />
+
+        <small id="chartUploadStatus">
+          No chart selected.
+        </small>
+
+      </div>
+
+      <div
+        id="chartImagePreview"
+        class="chart-image-preview"
+        hidden
+      >
+
+        <h3>Chart Preview</h3>
+
+        <img
+          id="chartPreviewImage"
+          alt="Uploaded trading chart preview"
+        />
+
+      </div>
+
+    </article>
+
+    <article class="panel">
+
+      <div class="panel-header">
+        <div>
+          <h3>Analysis Settings</h3>
+          <span>Optional context improves analysis</span>
+        </div>
+      </div>
+
+      <div class="analysis-form">
+
+        <label>
+          Symbol
+          <input
+            id="chartSymbol"
+            type="text"
+            placeholder="EUR/USD"
+          />
+        </label>
+
+        <label>
+          Timeframe
+          <select id="chartTimeframe">
+            <option value="">Auto Detect</option>
+            <option value="1m">1 Minute</option>
+            <option value="5m">5 Minutes</option>
+            <option value="15m">15 Minutes</option>
+            <option value="1h">1 Hour</option>
+            <option value="4h">4 Hours</option>
+            <option value="1d">1 Day</option>
+            <option value="1w">1 Week</option>
+            <option value="1M">1 Month</option>
+          </select>
+        </label>
+
+        <label>
+          Trading Style
+          <select id="chartTradingMode">
+            <option value="">Auto Select</option>
+            <option value="scalping">Scalping</option>
+            <option value="dayTrading">Day Trading</option>
+            <option value="swingTrading">Swing Trading</option>
+            <option value="positionTrading">Position Trading</option>
+            <option value="longTerm">Long Term</option>
+          </select>
+        </label>
+
+        <button
+          id="analyzeChartImage"
+          class="primary-btn"
+          disabled
+          onclick="ChartUploadController.analyzeChart()"
+        >
+          Analyze Chart With AI
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <article
+    id="chartAnalysisResult"
+    class="panel chart-analysis-result"
+    hidden
+  >
+
+    <div class="panel-header">
+      <div>
+        <h3>AI Chart Analysis</h3>
+        <span>Evidence-based scenario analysis</span>
+      </div>
+    </div>
+
+    <pre id="chartAnalysisText"></pre>
+
+  </article>
+
+  <div class="analysis-disclaimer">
+    AI chart analysis is informational. Market scenarios
+    are not guaranteed outcomes or financial advice.
+  </div>
+
+  </section>
+        
+        
+      
 
         <div class="section-title">
           <div class="eyebrow">DEEP REASONING</div>
