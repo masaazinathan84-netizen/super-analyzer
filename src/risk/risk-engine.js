@@ -1,89 +1,87 @@
 "use strict";
 
 const RiskEngine = {
-  version: "1.0.0",
+  maximumRiskPerTrade: 0.01,
 
-  calculateTradeRisk(
-    entry,
-    stop,
-    positionSize
-  ) {
-    const riskPerUnit =
-      Math.abs(
-        entry - stop
+  maximumPortfolioRisk: 0.05,
+
+  calculatePositionSize(data = {}) {
+    const account =
+      Number(data.accountBalance || 0);
+
+    const riskPercent =
+      Number(
+        data.riskPercent ||
+        this.maximumRiskPerTrade * 100
       );
 
-    return (
-      riskPerUnit *
-      positionSize
-    );
-  },
+    const entry =
+      Number(data.entry || 0);
 
-  riskPercent(
-    accountSize,
-    riskAmount
-  ) {
+    const stop =
+      Number(data.stop || 0);
+
     if (
-      accountSize <= 0
+      account <= 0 ||
+      entry <= 0 ||
+      stop <= 0 ||
+      entry === stop
     ) {
-      return 0;
+      return {
+        positionSize: 0,
+        riskAmount: 0,
+        status: "invalid_input"
+      };
     }
 
-    return (
-      riskAmount /
-      accountSize *
-      100
-    );
-  },
-
-  validate(
-    data = {}
-  ) {
-    const accountSize =
-      Number(
-        data.accountSize || 0
-      );
-
     const riskAmount =
-      Number(
-        data.riskAmount || 0
-      );
+      account *
+      (riskPercent / 100);
 
-    const maximumRisk =
-      Number(
-        data.maximumRiskPercent ||
-          1
-      );
-
-    const actual =
-      this.riskPercent(
-        accountSize,
-        riskAmount
-      );
+    const distance =
+      Math.abs(entry - stop);
 
     return {
-      allowed:
-        actual <=
-        maximumRisk,
+      riskAmount,
+      stopDistance: distance,
 
-      actualRiskPercent:
-        actual,
+      positionSize:
+        riskAmount / distance,
+
+      status: "calculated"
+    };
+  },
+
+  validateTrade(data = {}) {
+    const riskPercent =
+      Number(data.riskPercent || 0);
+
+    const hasStop =
+      Number(data.stop || 0) > 0;
+
+    return {
+      approved:
+        riskPercent <=
+          this.maximumRiskPerTrade * 100 &&
+        hasStop,
+
+      hasStop,
+
+      riskPercent,
 
       maximumRiskPercent:
-        maximumRisk
+        this.maximumRiskPerTrade * 100
     };
   }
 };
 
 if (typeof window !== "undefined") {
-  window.RiskEngine =
-    RiskEngine;
+  window.RiskEngine = RiskEngine;
 }
 
 if (
   typeof module !== "undefined" &&
   module.exports
 ) {
-  module.exports =
-    RiskEngine;
-  }
+  module.exports = RiskEngine;
+      }
