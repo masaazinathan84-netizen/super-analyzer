@@ -3,25 +3,10 @@
 const PredictionEngine = {
   version: "1.0.0",
 
-  create(data = {}) {
+  createScenario(data = {}) {
     return {
-      id:
-        data.id ||
-        `prediction-${Date.now()}`,
-
-      symbol:
-        data.symbol || "",
-
-      timeframe:
-        data.timeframe || "4h",
-
-      createdAt:
-        data.createdAt ||
-        Date.now(),
-
       direction:
-        data.direction ||
-        "neutral",
+        data.direction || "neutral",
 
       trigger:
         data.trigger || null,
@@ -38,15 +23,48 @@ const PredictionEngine = {
           : [],
 
       invalidation:
-        data.invalidation ||
-        null,
+        data.invalidation || null,
+
+      evidence:
+        Array.isArray(data.evidence)
+          ? data.evidence
+          : [],
+
+      confidence:
+        Number(data.confidence || 0),
 
       status:
-        data.status ||
-        "active",
+        data.status || "watching"
+    };
+  },
 
-      outcome:
-        null
+  generate(data = {}) {
+    return {
+      instrument:
+        data.instrument || null,
+
+      timeframe:
+        data.timeframe || null,
+
+      createdAt: Date.now(),
+
+      bull: this.createScenario({
+        direction: "bullish",
+        ...data.bull
+      }),
+
+      base: this.createScenario({
+        direction: "neutral",
+        ...data.base
+      }),
+
+      bear: this.createScenario({
+        direction: "bearish",
+        ...data.bear
+      }),
+
+      disclaimer:
+        "Scenarios are not guaranteed predictions or investment advice."
     };
   }
 };
