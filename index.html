@@ -2,598 +2,928 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#020817"
+  >
 
   <meta
     name="description"
-    content="Super Analyzer - AI-powered multi-asset market intelligence platform."
+    content="Super Analyzer — AI-powered multi-asset market intelligence."
   >
 
-  <title>Super Analyzer — AI Market Intelligence</title>
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
 
-  <link rel="stylesheet" href="styles.css">
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="assets/icons/favicon.svg"
+  >
+
+  <title>Super Analyzer</title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
 </head>
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
-  <header class="topbar">
+  <!-- SPLASH SCREEN -->
 
-    <div class="brand">
-
-      <div class="brand-mark">
-        SA
+  <div
+    id="splash"
+    class="splash"
+  >
+    <div class="splash-logo">
+      <div class="splash-ring">
+        <span>SA</span>
       </div>
-
-      <div>
-        <h1>Super Analyzer</h1>
-        <p>AI Market Intelligence</p>
-      </div>
-
     </div>
 
-    <div class="system-status">
-      <span class="status-dot"></span>
-      Systems Online
+    <h1>
+      Super <span>Analyzer</span>
+    </h1>
+
+    <p>AI POWERED MARKET INTELLIGENCE</p>
+
+    <div class="splash-chart">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-  </header>
+    <div class="loading-bar">
+      <div></div>
+    </div>
+
+    <small>
+      Loading your financial intelligence...
+    </small>
+  </div>
 
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
-  <nav class="nav">
+  <!-- APPLICATION -->
 
-    <button class="nav-btn active" data-section="dashboard">
-      Dashboard
-    </button>
+  <div
+    id="app"
+    class="app-shell hidden"
+  >
 
-    <button class="nav-btn" data-section="markets">
-      Markets
-    </button>
+    <!-- TOP BAR -->
 
-    <button class="nav-btn" data-section="scanner">
-      AI Scanner
-    </button>
+    <header class="topbar">
 
-    <button class="nav-btn" data-section="analyst">
-      AI Analyst
-    </button>
+      <div class="brand">
 
-    <button class="nav-btn" data-section="predictions">
-      Predictions
-    </button>
-
-    <button class="nav-btn" data-section="watchtower">
-      Watchtower
-    </button>
-
-    <button class="nav-btn" data-section="backtest">
-      Backtest
-    </button>
-
-    <button class="nav-btn" data-section="portfolio">
-      Portfolio
-    </button>
-
-    <button class="nav-btn" data-section="alerts">
-      Alerts
-    </button>
-
-  </nav>
-
-
-  <!-- =========================
-       MAIN APPLICATION
-  ========================== -->
-  <main>
-
-
-    <!-- =========================
-         DASHBOARD
-    ========================== -->
-    <section id="dashboard" class="page active">
-
-      <div class="page-heading">
-
-        <div>
-
-          <p class="eyebrow">
-            GLOBAL MARKET INTELLIGENCE
-          </p>
-
-          <h2>
-            Market Command Center
-          </h2>
-
+        <div class="brand-mark">
+          SA
         </div>
 
-        <button id="runAnalysis" class="primary-btn">
-          Run AI Analysis
+        <div>
+          <h1>
+            Super <span>Analyzer</span>
+          </h1>
+
+          <p>
+            AI MARKET INTELLIGENCE
+          </p>
+        </div>
+
+      </div>
+
+      <div class="top-actions">
+
+        <div class="system-status">
+          <span class="status-dot"></span>
+          Systems Online
+        </div>
+
+        <button
+          class="icon-button"
+          data-screen="alerts"
+          aria-label="Alerts"
+        >
+          🔔
+        </button>
+
+        <button
+          class="icon-button"
+          data-screen="settings"
+          aria-label="Settings"
+        >
+          ⚙
         </button>
 
       </div>
 
-
-      <!-- MARKET METRICS -->
-      <div class="metric-grid">
-
-        <article class="metric-card">
-
-          <span>
-            Markets
-          </span>
-
-          <strong>
-            Multi-Asset
-          </strong>
-
-          <small>
-            Forex · Crypto · Stocks · Indices · Commodities
-          </small>
-
-        </article>
+    </header>
 
 
-        <article class="metric-card">
+    <!-- DESKTOP NAV -->
 
-          <span>
-            AI Consensus
-          </span>
+    <nav class="desktop-nav">
 
-          <strong id="consensus">
-            Neutral
-          </strong>
+      <button
+        class="nav-btn active"
+        data-screen="home"
+      >
+        Home
+      </button>
 
-          <small>
-            Primary + Second Opinion + Quant
-          </small>
+      <button
+        class="nav-btn"
+        data-screen="markets"
+      >
+        Markets
+      </button>
 
-        </article>
+      <button
+        class="nav-btn"
+        data-screen="scanner"
+      >
+        AI Scanner
+      </button>
 
+      <button
+        class="nav-btn"
+        data-screen="analyst"
+      >
+        AI Analyst
+      </button>
 
-        <article class="metric-card">
+      <button
+        class="nav-btn"
+        data-screen="predictions"
+      >
+        Predictions
+      </button>
 
-          <span>
-            Monitoring
-          </span>
+      <button
+        class="nav-btn"
+        data-screen="watchtower"
+      >
+        Watchtower
+      </button>
 
-          <strong>
-            24/7 Ready
-          </strong>
+      <button
+        class="nav-btn"
+        data-screen="portfolio"
+      >
+        Portfolio
+      </button>
 
-          <small>
-            Continuous thesis tracking
-          </small>
-
-        </article>
-
-
-        <article class="metric-card">
-
-          <span>
-            Risk Engine
-          </span>
-
-          <strong>
-            Active
-          </strong>
-
-          <small>
-            Scenario-based risk controls
-          </small>
-
-        </article>
-
-      </div>
-
-
-      <!-- DASHBOARD PANELS -->
-      <div class="dashboard-grid">
+    </nav>
 
 
-        <!-- WATCHLIST -->
-        <article class="panel">
+    <!-- MAIN CONTENT -->
 
-          <div class="panel-header">
+    <main>
 
-            <h3>
-              Watchlist
+
+      <!-- HOME -->
+
+      <section
+        id="home"
+        class="screen active"
+      >
+
+        <div class="welcome-row">
+
+          <div>
+            <p class="eyebrow">
+              GLOBAL MARKET INTELLIGENCE
+            </p>
+
+            <h2>
+              Market Command Center
+            </h2>
+
+            <p class="subheading">
+              AI-powered analysis across markets,
+              technical structure, liquidity,
+              fundamentals and news.
+            </p>
+          </div>
+
+          <button
+            id="runAnalysis"
+            class="primary-btn"
+          >
+            ✦ Run AI Analysis
+          </button>
+
+        </div>
+
+
+        <!-- PORTFOLIO HERO -->
+
+        <div class="hero-card">
+
+          <div>
+
+            <p class="muted">
+              Total Portfolio Value
+            </p>
+
+            <h3 class="hero-value">
+              $12,458.32
             </h3>
 
-            <span>
-              Live data layer
-            </span>
-
-          </div>
-
-
-          <div class="watchlist">
-
-            <div>
-
-              <b>
-                EUR/USD
-              </b>
-
-              <span>
-                Forex
-              </span>
-
-              <strong>
-                —
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <b>
-                BTC/USD
-              </b>
-
-              <span>
-                Crypto
-              </span>
-
-              <strong>
-                —
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <b>
-                SPX
-              </b>
-
-              <span>
-                Index
-              </span>
-
-              <strong>
-                —
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <b>
-                XAU/USD
-              </b>
-
-              <span>
-                Gold
-              </span>
-
-              <strong>
-                —
-              </strong>
-
+            <div class="positive">
+              ▲ +4.32% <span>24h</span>
             </div>
 
           </div>
 
-        </article>
+          <div class="hero-chart">
+
+            <svg
+              viewBox="0 0 400 130"
+              preserveAspectRatio="none"
+            >
+
+              <defs>
+                <linearGradient
+                  id="chartFill"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stop-color="#00e5ff"
+                    stop-opacity=".35"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stop-color="#00e5ff"
+                    stop-opacity="0"
+                  />
+                </linearGradient>
+              </defs>
+
+              <path
+                class="chart-area"
+                d="M0 115
+                   C30 105 45 100 65 105
+                   C90 112 105 80 130 88
+                   C155 96 170 68 195 72
+                   C220 76 230 48 255 57
+                   C280 66 300 30 325 42
+                   C350 54 370 20 400 8
+                   L400 130
+                   L0 130 Z"
+              />
+
+              <path
+                class="chart-line"
+                d="M0 115
+                   C30 105 45 100 65 105
+                   C90 112 105 80 130 88
+                   C155 96 170 68 195 72
+                   C220 76 230 48 255 57
+                   C280 66 300 30 325 42
+                   C350 54 370 20 400 8"
+              />
+
+            </svg>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="quick-grid">
+
+          <button
+            class="quick-card"
+            data-screen="analyst"
+          >
+            <div class="quick-icon">🧠</div>
+            <strong>AI Analyst</strong>
+            <span>Deep market reasoning</span>
+          </button>
+
+          <button
+            class="quick-card"
+            data-screen="scanner"
+          >
+            <div class="quick-icon">⌕</div>
+            <strong>AI Scanner</strong>
+            <span>Find opportunities</span>
+          </button>
+
+          <button
+            class="quick-card"
+            data-screen="predictions"
+          >
+            <div class="quick-icon">◈</div>
+            <strong>Predictions</strong>
+            <span>Scenario forecasts</span>
+          </button>
+
+          <button
+            class="quick-card"
+            data-screen="watchtower"
+          >
+            <div class="quick-icon">◉</div>
+            <strong>Watchtower</strong>
+            <span>24/7 monitoring</span>
+          </button>
+
+        </div>
+
+
+        <!-- MARKET OVERVIEW -->
+
+        <div class="section-title">
+
+          <div>
+            <h3>Market Overview</h3>
+            <p>Multi-asset intelligence</p>
+          </div>
+
+          <button
+            class="text-button"
+            data-screen="markets"
+          >
+            View All →
+          </button>
+
+        </div>
+
+
+        <div class="market-grid">
+
+          <article class="market-card">
+
+            <div class="market-top">
+              <span class="coin btc">₿</span>
+
+              <div>
+                <strong>BTC</strong>
+                <small>Bitcoin</small>
+              </div>
+
+              <span class="positive">
+                +2.41%
+              </span>
+            </div>
+
+            <strong class="market-price">
+              $68,432.12
+            </strong>
+
+            <div class="mini-chart green-chart">
+              ╱╲__╱╲___╱╱╲__
+            </div>
+
+          </article>
+
+
+          <article class="market-card">
+
+            <div class="market-top">
+              <span class="coin eth">◆</span>
+
+              <div>
+                <strong>ETH</strong>
+                <small>Ethereum</small>
+              </div>
+
+              <span class="positive">
+                +3.17%
+              </span>
+            </div>
+
+            <strong class="market-price">
+              $3,482.17
+            </strong>
+
+            <div class="mini-chart green-chart">
+              __╱╲_╱╲___╱╱╲_
+            </div>
+
+          </article>
+
+
+          <article class="market-card">
+
+            <div class="market-top">
+              <span class="coin sol">≋</span>
+
+              <div>
+                <strong>SOL</strong>
+                <small>Solana</small>
+              </div>
+
+              <span class="positive">
+                +4.80%
+              </span>
+            </div>
+
+            <strong class="market-price">
+              $162.34
+            </strong>
+
+            <div class="mini-chart green-chart">
+              ╱__╱╲___╱╱╲_╱╲
+            </div>
+
+          </article>
+
+
+          <article class="market-card">
+
+            <div class="market-top">
+              <span class="coin gold">Au</span>
+
+              <div>
+                <strong>XAU/USD</strong>
+                <small>Gold</small>
+              </div>
+
+              <span class="positive">
+                +0.84%
+              </span>
+            </div>
+
+            <strong class="market-price">
+              $2,671.20
+            </strong>
+
+            <div class="mini-chart green-chart">
+              __╱╲__╱╱╲____╱
+            </div>
+
+          </article>
+
+        </div>
 
 
         <!-- AI CONSENSUS -->
+
+        <div class="two-column">
+
+          <article class="panel">
+
+            <div class="panel-header">
+              <div>
+                <h3>AI Consensus</h3>
+                <p>Multi-model reasoning</p>
+              </div>
+
+              <span class="badge neutral">
+                LIVE
+              </span>
+            </div>
+
+            <div class="consensus-main">
+
+              <div
+                id="consensus"
+                class="consensus-value"
+              >
+                NEUTRAL
+              </div>
+
+              <p id="analysisText">
+                Waiting for the AI engines
+                to analyze current market conditions.
+              </p>
+
+            </div>
+
+            <div class="ai-votes">
+
+              <div>
+                <span>Primary AI</span>
+                <b>Neutral</b>
+              </div>
+
+              <div>
+                <span>Second Opinion</span>
+                <b>Bullish</b>
+              </div>
+
+              <div>
+                <span>Quant Engine</span>
+                <b>Neutral</b>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Top Opportunity</h3>
+                <p>AI-ranked setup</p>
+              </div>
+
+              <span class="badge bullish">
+                BULLISH
+              </span>
+
+            </div>
+
+            <div class="opportunity">
+
+              <div class="opportunity-symbol">
+                ₿
+              </div>
+
+              <div>
+                <strong>BTC/USD</strong>
+                <span>
+                  Momentum + Structure
+                </span>
+              </div>
+
+              <div class="opportunity-score">
+                82
+                <small>score</small>
+              </div>
+
+            </div>
+
+            <div class="progress">
+              <div style="width:82%"></div>
+            </div>
+
+            <p class="small-text">
+              Strong multi-timeframe alignment,
+              positive momentum and improving liquidity
+              conditions.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <!-- SYSTEM -->
+
         <article class="panel">
 
           <div class="panel-header">
 
-            <h3>
-              AI Consensus
-            </h3>
+            <div>
+              <h3>AI System Status</h3>
+              <p>Connected intelligence layers</p>
+            </div>
 
-            <span>
-              Scenario engine
+            <span class="badge online">
+              ONLINE
             </span>
 
           </div>
 
+          <div class="system-grid">
 
-          <div class="consensus-box">
-
-            <div
-              class="consensus-value"
-              id="bias"
-            >
-              NEUTRAL
+            <div>
+              <span>●</span>
+              <strong>Market Data</strong>
+              <small>Ready</small>
             </div>
 
+            <div>
+              <span>●</span>
+              <strong>Technical Engine</strong>
+              <small>Ready</small>
+            </div>
 
-            <p id="analysisText">
-              Waiting for live market data and connected AI analysis.
-            </p>
+            <div>
+              <span>●</span>
+              <strong>AI Reasoning</strong>
+              <small>Ready</small>
+            </div>
 
+            <div>
+              <span>●</span>
+              <strong>News Intelligence</strong>
+              <small>Ready</small>
+            </div>
 
-            <div class="scenario-row">
+            <div>
+              <span>●</span>
+              <strong>Risk Engine</strong>
+              <small>Ready</small>
+            </div>
 
-              <span>
-                Bull
-              </span>
-
-              <span>
-                Base
-              </span>
-
-              <span>
-                Bear
-              </span>
-
+            <div>
+              <span>●</span>
+              <strong>Monitoring</strong>
+              <small>Ready</small>
             </div>
 
           </div>
 
         </article>
 
-      </div>
+      </section>
 
 
-      <!-- AI SYSTEM STATUS -->
-      <article class="panel">
+      <!-- MARKETS -->
 
-        <div class="panel-header">
+      <section
+        id="markets"
+        class="screen"
+      >
 
-          <h3>
-            AI System Status
-          </h3>
+        <div class="page-title">
+          <p class="eyebrow">MULTI-ASSET DATA</p>
+          <h2>Markets</h2>
+          <p>
+            Forex, crypto, stocks, indices,
+            commodities and futures.
+          </p>
+        </div>
 
-          <span>
-            Architecture
+        <div class="filter-row">
+
+          <button class="filter active">All</button>
+          <button class="filter">Crypto</button>
+          <button class="filter">Stocks</button>
+          <button class="filter">Forex</button>
+          <button class="filter">Indices</button>
+          <button class="filter">Commodities</button>
+
+        </div>
+
+        <div class="large-market-list">
+
+          <div class="large-market">
+            <div class="asset">
+              <span class="coin btc">₿</span>
+              <div>
+                <strong>BTC/USD</strong>
+                <small>Crypto · Bitcoin</small>
+              </div>
+            </div>
+            <strong>$68,432.12</strong>
+            <span class="positive">+2.41%</span>
+          </div>
+
+          <div class="large-market">
+            <div class="asset">
+              <span class="coin eth">◆</span>
+              <div>
+                <strong>ETH/USD</strong>
+                <small>Crypto · Ethereum</small>
+              </div>
+            </div>
+            <strong>$3,482.17</strong>
+            <span class="positive">+3.17%</span>
+          </div>
+
+          <div class="large-market">
+            <div class="asset">
+              <span class="coin gold">Au</span>
+              <div>
+                <strong>XAU/USD</strong>
+                <small>Commodity · Gold</small>
+              </div>
+            </div>
+            <strong>$2,671.20</strong>
+            <span class="positive">+0.84%</span>
+          </div>
+
+          <div class="large-market">
+            <div class="asset">
+              <span class="coin index">S</span>
+              <div>
+                <strong>SPX</strong>
+                <small>Index · S&P 500</small>
+              </div>
+            </div>
+            <strong>5,842.91</strong>
+            <span class="positive">+0.62%</span>
+          </div>
+
+          <div class="large-market">
+            <div class="asset">
+              <span class="coin forex">$</span>
+              <div>
+                <strong>EUR/USD</strong>
+                <small>Forex</small>
+              </div>
+            </div>
+            <strong>1.0842</strong>
+            <span class="positive">+0.18%</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- AI SCANNER -->
+
+      <section
+        id="scanner"
+        class="screen"
+      >
+
+        <div class="page-title">
+          <p class="eyebrow">OPPORTUNITY ENGINE</p>
+          <h2>AI Scanner</h2>
+          <p>
+            Scan the market for high-quality
+            technical and structural setups.
+          </p>
+        </div>
+
+        <div class="scanner-controls">
+
+          <button class="filter active">All</button>
+          <button class="filter">Crypto</button>
+          <button class="filter">Stocks</button>
+          <button class="filter">Forex</button>
+          <button class="filter">Indices</button>
+
+          <select>
+            <option>All Timeframes</option>
+            <option>5m</option>
+            <option>15m</option>
+            <option>1H</option>
+            <option>4H</option>
+            <option>1D</option>
+          </select>
+
+        </div>
+
+        <div class="scanner-list">
+
+          <div class="scanner-item">
+            <div class="asset">
+              <span class="coin btc">₿</span>
+              <div>
+                <strong>BTC/USD</strong>
+                <small>Momentum + Structure</small>
+              </div>
+            </div>
+            <span class="badge bullish">LONG</span>
+            <strong>82</strong>
+          </div>
+
+          <div class="scanner-item">
+            <div class="asset">
+              <span class="coin eth">◆</span>
+              <div>
+                <strong>ETH/USD</strong>
+                <small>Breakout confirmation</small>
+              </div>
+            </div>
+            <span class="badge bullish">LONG</span>
+            <strong>78</strong>
+          </div>
+
+          <div class="scanner-item">
+            <div class="asset">
+              <span class="coin gold">Au</span>
+              <div>
+                <strong>XAU/USD</strong>
+                <small>Liquidity sweep</small>
+              </div>
+            </div>
+            <span class="badge neutral">WATCH</span>
+            <strong>71</strong>
+          </div>
+
+          <div class="scanner-item">
+            <div class="asset">
+              <span class="coin index">S</span>
+              <div>
+                <strong>SPX</strong>
+                <small>Trend continuation</small>
+              </div>
+            </div>
+            <span class="badge bullish">LONG</span>
+            <strong>69</strong>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- AI ANALYST -->
+
+      <section
+        id="analyst"
+        class="screen"
+      >
+
+        <div class="page-title">
+          <p class="eyebrow">MULTI-MODEL REASONING</p>
+          <h2>AI Analyst</h2>
+          <p>
+            Technicals, structure, liquidity,
+            fundamentals, news and macro context.
+          </p>
+        </div>
+
+        <div class="analyst-header">
+
+          <div class="ai-brain">
+            🧠
+          </div>
+
+          <div>
+            <h3>BTC/USD</h3>
+            <p>Advanced AI Market Analysis</p>
+          </div>
+
+          <span class="badge bullish">
+            BULLISH
           </span>
 
         </div>
 
+        <div class="two-column">
 
-        <div class="system-grid">
+          <article class="panel">
 
+            <h3>Market Thesis</h3>
 
-          <div>
+            <p class="analysis-paragraph">
+              Current market structure remains constructive
+              across higher timeframes. Momentum is positive,
+              while liquidity conditions suggest potential
+              continuation if the current resistance zone
+              is confirmed.
+            </p>
 
-            <b>
-              Primary Reasoning
-            </b>
+            <div class="insight-list">
 
-            <span>
-              Ready
-            </span>
+              <div>
+                <span>✓</span>
+                <p>Higher-timeframe structure is bullish.</p>
+              </div>
 
-          </div>
+              <div>
+                <span>✓</span>
+                <p>Momentum remains above neutral levels.</p>
+              </div>
 
+              <div>
+                <span>✓</span>
+                <p>Liquidity is building above recent highs.</p>
+              </div>
 
-          <div>
+              <div>
+                <span>!</span>
+                <p>News volatility remains a risk factor.</p>
+              </div>
 
-            <b>
-              Second Opinion
-            </b>
+            </div>
 
-            <span>
-              Ready
-            </span>
+          </article>
 
-          </div>
 
+          <article class="panel">
 
-          <div>
+            <h3>Multi-Timeframe Alignment</h3>
 
-            <b>
-              Quant Engine
-            </b>
+            <div class="timeframe-list">
 
-            <span>
-              Ready
-            </span>
+              <div>
+                <span>1H</span>
+                <b class="bull-text">Bullish</b>
+              </div>
 
-          </div>
+              <div>
+                <span>4H</span>
+                <b class="bull-text">Bullish</b>
+              </div>
 
+              <div>
+                <span>1D</span>
+                <b class="bull-text">Bullish</b>
+              </div>
 
-          <div>
-
-            <b>
-              Market Data
-            </b>
-
-            <span>
-              Waiting for provider
-            </span>
-
-          </div>
-
-
-          <div>
-
-            <b>
-              News Intelligence
-            </b>
-
-            <span>
-              Waiting for provider
-            </span>
-
-          </div>
-
-
-          <div>
-
-            <b>
-              Risk Engine
-            </b>
-
-            <span>
-              Ready
-            </span>
-
-          </div>
-
-
-        </div>
-
-      </article>
-
-    </section>
-
-
-    <!-- =========================
-         MARKETS
-    ========================== -->
-    <section id="markets" class="page">
-
-      <h2>
-        Markets
-      </h2>
-
-      <p>
-        Multi-asset market data, charts, instruments and timeframes will appear here.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         AI SCANNER
-    ========================== -->
-    <section id="scanner" class="page">
-
-      <h2>
-        AI Scanner
-      </h2>
-
-      <p>
-        Scan instruments for technical, structural, liquidity and fundamental opportunities.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         AI ANALYST
-    ========================== -->
-    <section id="analyst" class="page">
-
-      <h2>
-        AI Analyst
-      </h2>
-
-      <p>
-        Combine price action, indicators, market structure, liquidity, news and fundamentals.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         PREDICTIONS
-    ========================== -->
-    <section id="predictions" class="page">
-
-      <h2>
-        Predictions
-      </h2>
-
-      <p>
-        Bull, base and bear scenarios with triggers, targets and invalidation levels.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         WATCHTOWER
-    ========================== -->
-    <section id="watchtower" class="page">
-
-      <h2>
-        Watchtower
-      </h2>
-
-      <p>
-        Persistent monitoring of market conditions and AI thesis changes.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         BACKTEST
-    ========================== -->
-    <section id="backtest" class="page">
-
-      <h2>
-        Backtest
-      </h2>
-
-      <p>
-        Evaluate strategies, signals and historical AI predictions.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         PORTFOLIO
-    ========================== -->
-    <section id="portfolio" class="page">
-
-      <h2>
-        Portfolio
-      </h2>
-
-      <p>
-        Positions, exposure, risk limits and cross-market relationships.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         ALERTS
-    ========================== -->
-    <section id="alerts" class="page">
-
-      <h2>
-        Alerts
-      </h2>
-
-      <p>
-        Market, structure, news, risk and AI thesis-change alerts.
-      </p>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    Super Analyzer · AI-powered market intelligence ·
-    Predictions are scenarios, not guarantees.
-
-  </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
-
-  <script src="app.js"></script>
-
-</body>
-      </html>
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#070b12">
+              <div>
+     
