@@ -4,17 +4,21 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
+const {
+  analyzeChartImage
+} = require("./chart-analysis");
+
 const PORT =
-  process.env.PORT || 3000;
+  Number(process.env.PORT) || 3000;
 
 const ROOT =
-  path.join(__dirname, "..");
+  path.resolve(__dirname, "..");
 
 const MIME_TYPES = {
-  ".html": "text/html",
-  ".css": "text/css",
-  ".js": "application/javascript",
-  ".json": "application/json",
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".jpg": "image/jpeg",
@@ -22,60 +26,224 @@ const MIME_TYPES = {
   ".webp": "image/webp"
 };
 
-const server =
-  http.createServer(
-    (request, response) => {
+function sendJson(
+  response,
+  status,
+  data
+) {
+  response.writeHead(
+    status,
+    {
+      "Content-Type":
+        "application/json; charset=utf-8"
+    }
+  );
 
-      let requestPath =
-        request.url.split("?")[0];
+  response.end(
+    JSON.stringify(data)
+  );
+}
 
-      if (requestPath === "/") {
-        requestPath = "/index.html";
+function readRequestBody(request) {
+  return new Promise(
+    (resolve, reject) => {
+      let body = "";
+
+      request.on(
+        "data",
+        (chunk) => {
+          body += chunk;
+
+          if (
+            body.length >
+            15 * 1024 * 1024
+          ) {
+            reject(
+              new Error(
+                "Request body is too large."
+              )
+            );
+
+            request.destroy();
+          }
+        }
+      );
+
+      request.on(
+        "end",
+        () => {
+          resolve(body);
+        }
+      );
+
+      request.on(
+        "error",
+        reject
+      );
+    }
+  );
+}
+
+function serveStatic(
+  request,
+  response
+) {
+  let requestedPath =
+    decodeURIComponent(
+      request.url.split("?")[0]
+    );
+
+  if (
+    requestedPath === "/" ||
+    requestedPath === ""
+  ) {
+    requestedPath = "/index.html";
+  }
+
+  const filePath =
+    path.resolve(
+      ROOT,
+      "." + requestedPath
+    );
+
+  if (
+    !filePath.startsWith(ROOT)
+  ) {
+    sendJson(
+      response,
+      403,
+      {
+        error:
+          "Access denied."
       }
+    );
 
-      const filePath =
-        path.normalize(
-          path.join(
-            ROOT,
-            requestPath
-          )
+    return;
+  }
+
+  fs.stat(
+    filePath,
+    (error, stats) => {
+      if (error || !stats.isFile()) {
+        sendJson(
+          response,
+          404,
+          {
+            error:
+              "File not found."
+          }
         );
 
-      if (
-        !filePath.startsWith(ROOT)
-      ) {
-        response.writeHead(403);
-        response.end("Forbidden");
         return;
       }
 
-      fs.readFile(
-        filePath,
-        (error, data) => {
+      const extension =
+        path.extname(filePath)
+          .toLowerCase();
 
-          if (error) {
-            response.writeHead(404);
-            response.end("Not found");
+      const contentType =
+        MIME_TYPES[extension] ||
+        "application/octet-stream";
+
+      response.writeHead(
+        200,
+        {
+          "Content-Type":
+            contentType
+        }
+      );
+
+      fs.createReadStream(
+        filePath
+      ).pipe(response);
+    }
+  );
+}
+
+const server =
+  http.createServer(
+    async (request, response) => {
+      try {
+        if (
+          request.method === "POST" &&
+          request.url ===
+            "/api/vision/chart-analysis"
+        ) {
+          const body =
+            await readRequestBody(
+              request
+            );
+
+          let data;
+
+          try {
+            data =
+              JSON.parse(body);
+          } catch {
+            sendJson(
+              response,
+              400,
+              {
+                error:
+                  "Invalid JSON request."
+              }
+            );
+
             return;
           }
 
-          const extension =
-            path.extname(filePath);
+          const result =
+            await analyzeChartImage(
+              data
+            );
 
-          response.writeHead(
+          sendJson(
+            response,
             200,
+            result
+          );
+
+          return;
+        }
+
+        if (
+          request.method !== "GET" &&
+          request.method !== "HEAD"
+        ) {
+          sendJson(
+            response,
+            405,
             {
-              "Content-Type":
-                MIME_TYPES[
-                  extension
-                ] ||
-                "application/octet-stream"
+              error:
+                "Method not allowed."
             }
           );
 
-          response.end(data);
+          return;
         }
-      );
+
+        serveStatic(
+          request,
+          response
+        );
+
+      } catch (error) {
+        console.error(
+          "Server error:",
+          error
+        );
+
+        sendJson(
+          response,
+          500,
+          {
+            success: false,
+            error:
+              error.message ||
+              "Internal server error."
+          }
+        );
+      }
     }
   );
 
@@ -83,7 +251,7 @@ server.listen(
   PORT,
   () => {
     console.log(
-      `Super Analyzer server running on port ${PORT}`
+      `Super Analyzer running on port ${PORT}`
     );
   }
 );
