@@ -45,43 +45,46 @@ function sendJson(
 }
 
 function readRequestBody(request) {
-  return new Promise(
-    (resolve, reject) => {
-      let body = "";
+  return new Promise((resolve, reject) => {
+    let body = "";
+    let size = 0;
+    let finished = false;
 
-      request.on(
-        "data",
-        (chunk) => {
-          body += chunk;
+    const maxBytes = 15 * 1024 * 1024;
 
-          if (
-            body.length >
-            15 * 1024 * 1024
-          ) {
-            reject(
-              new Error(
-                "Request body is too large."
-              )
-            );
+    request.on("data", (chunk) => {
+      if (finished) return;
 
-            request.destroy();
-          }
-        }
-      );
+      size += chunk.length;
 
-      request.on(
-        "end",
-        () => {
-          resolve(body);
-        }
-      );
+      if (size > maxBytes) {
+        finished = true;
 
-      request.on(
-        "error",
-        reject
-      );
-    }
-  );
+        reject(
+          new Error("Request body exceeds the size limit.")
+        );
+
+        request.destroy();
+        return;
+      }
+
+      body += chunk.toString("utf8");
+    });
+
+    request.on("end", () => {
+      if (!finished) {
+        finished = true;
+        resolve(body);
+      }
+    });
+
+    request.on("error", (error) => {
+      if (!finished) {
+        finished = true;
+        reject(error);
+      }
+    });
+  });
 }
 
 function serveStatic(
