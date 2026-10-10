@@ -260,8 +260,11 @@ Do not claim guaranteed profits.
       process.env.OPENAI_VISION_MODEL ||
       "gpt-6-astra",
 
-    analysis:
-      result.output_text || "",
+  analysis:
+  typeof result.output_text === "string" &&
+  result.output_text.trim()
+    ? result.output_text
+    : "The AI returned no readable analysis. Please try another chart image.",
 
     responseId:
       result.id || null,
