@@ -18,11 +18,41 @@ async function analyzeChartImage(requestBody) {
   const image =
     requestBody.image;
 
-  if (!image.dataUrl) {
-    throw new Error(
-      "Chart image data is missing."
-    );
-  }
+if (!image.dataUrl) {
+  throw new Error("Chart image data is missing.");
+}
+
+const allowedImageTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/webp"
+];
+
+if (!allowedImageTypes.includes(image.type)) {
+  throw new Error("Unsupported chart image type.");
+}
+
+const imagePrefix = `data:${image.type};base64,`;
+
+if (!image.dataUrl.startsWith(imagePrefix)) {
+  throw new Error("The chart image format is invalid.");
+}
+
+const base64Content = image.dataUrl.slice(imagePrefix.length);
+
+if (
+  !base64Content ||
+  !/^[A-Za-z0-9+/]+={0,2}$/.test(base64Content)
+) {
+  throw new Error("The chart image encoding is invalid.");
+}
+
+const estimatedImageBytes =
+  Math.floor(base64Content.length * 3 / 4);
+
+if (estimatedImageBytes > 10 * 1024 * 1024) {
+  throw new Error("The chart image must be smaller than 10 MB.");
+}
 
   const context =
     requestBody.context || {};
