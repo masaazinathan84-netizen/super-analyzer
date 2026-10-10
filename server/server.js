@@ -230,22 +230,17 @@ const server =
           response
         );
 
-      } catch (error) {
-        console.error(
-          "Server error:",
-          error
-        );
+} catch (error) {
+  console.error("Super Analyzer request failed.");
 
-        sendJson(
-          response,
-          500,
-          {
-            success: false,
-            error:
-              error.message ||
-              "Internal server error."
-          }
-        );
+  if (response.headersSent || response.destroyed) {
+    return;
+  }
+
+  sendJson(response, 500, {
+    success: false,
+    error: "The request failed. Check the server configuration and try again."
+  });
       }
     }
   );
