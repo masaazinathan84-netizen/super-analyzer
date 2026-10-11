@@ -1,4 +1,30 @@
-"use strict";
+savePersistent() {
+  if (!window.SuperAnalyzerStorage) {
+    return false;
+  }
+
+  return window.SuperAnalyzerStorage.save(
+    "ai-journal",
+    this.entries
+  );
+},
+
+loadPersistent() {
+  if (!window.SuperAnalyzerStorage) {
+    return [];
+  }
+
+  const saved =
+    window.SuperAnalyzerStorage.load(
+      "ai-journal",
+      []
+    );
+
+  this.entries =
+    Array.isArray(saved) ? saved : [];
+
+  return this.entries;
+},this.savePersistent();"use strict";
 
 const AIJournal = {
   entries: [],
