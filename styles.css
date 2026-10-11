@@ -1483,3 +1483,46 @@ footer span {
     min-height: auto;
   }
   }
+.market-status-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.market-status-strip > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(77, 163, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+}
+
+.market-status-strip strong {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: #a8c8ef;
+}
+
+.market-status-strip small {
+  color: #8fa0b5;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .market-status-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .market-status-strip {
+    grid-template-columns: 1fr;
+  }
+  }
