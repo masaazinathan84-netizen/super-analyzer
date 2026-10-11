@@ -1,17 +1,22 @@
-
+{
   "name": "super-analyzer",
   "version": "1.0.0",
   "private": true,
-  "description": "Super Analyzer - AI-powered multi-asset market intelligence platform.",
+  "description": "Super Analyzer AI Market Intelligence",
   "type": "commonjs",
   "scripts": {
-    "start": "npx serve .",
+    "start": "node server/server.js",
     "android:add": "npx cap add android",
     "android:sync": "npx cap sync android",
     "android:open": "npx cap open android",
     "android:build": "npx cap sync android"
   },
   "dependencies": {
-    "@capacitor/core": "^8.0.0"
+    "@capacitor/core": "^8.0.0",
+    "openai": "^6.0.0"
   },
-  "devDependencies"
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/android": "^8.0.0"
+  }
+}
